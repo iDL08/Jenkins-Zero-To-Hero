@@ -4,14 +4,14 @@ pipeline {
     stages {
         stage('Create directories') {
             steps {
-                sh 'mkdir -p output-log install-log'
+                sh 'mkdir output-log install-log'
             }
         }
 
         stage('Create log files') {
             steps {
-                sh 'sudo touch /home/ubuntu/output-log/output-log.txt'
-                sh 'sudo touch /home/ubuntu/install-log/install-log.txt'
+                sh 'touch /home/ubuntu/output-log/output-log.txt'
+                sh 'touch /home/ubuntu/install-log/install-log.txt'
                 sh 'touch /home/ubuntu/test.txt'
             }
         }
