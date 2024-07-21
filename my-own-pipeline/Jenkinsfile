@@ -7,10 +7,10 @@ pipeline {
                 sh '''
                 mkdir output-log install-log
                 cd output-log/
-                touch output-log.txt
+                sudo touch output-log.txt
                 cd ..
                 cd install-log/
-                touch install-log.txt
+                sudo touch install-log.txt
                 cd ..
                 touch test.txt
                 sudo apt-get update -y > /home/ubuntu/output-log/output-log.txt
