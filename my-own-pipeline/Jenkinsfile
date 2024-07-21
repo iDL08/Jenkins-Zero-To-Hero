@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Create a file') {
+            steps {
+                sh '''
+                mkdir output-log install-log
+                cd output-log/
+                touch output-log.txt
+                cd ..
+                cd install-log/
+                touch install-log.txt
+                cd ..
+                touch test.txt
+                sudo apt-get update -y > /home/ubuntu/output-log/output-log.txt
+                sudo apt-get install apache2 -y > /home/ubuntu/install-log/install-log.txt
+                '''
+            }
+        }
+    }
+}
