@@ -2,20 +2,29 @@ pipeline {
     agent any
 
     stages {
-        stage('install') {
+        stage('Create directories') {
             steps {
-                sh '''
-                mkdir output-log install-log
-                cd output-log/
-                sudo touch output-log.txt
-                cd ..
-                cd install-log/
-                sudo touch install-log.txt
-                cd ..
-                touch test.txt
-                sudo apt-get update -y > /home/ubuntu/output-log/output-log.txt
-                sudo apt-get install apache2 -y > /home/ubuntu/install-log/install-log.txt
-                '''
+                sh 'mkdir -p output-log install-log'
+            }
+        }
+
+        stage('Create log files') {
+            steps {
+                sh 'sudo touch /home/ubuntu/output-log/output-log.txt'
+                sh 'sudo touch /home/ubuntu/install-log/install-log.txt'
+                sh 'touch /home/ubuntu/test.txt'
+            }
+        }
+
+        stage('Update packages') {
+            steps {
+                sh 'sudo apt-get update -y > /home/ubuntu/output-log/output-log.txt'
+            }
+        }
+
+        stage('Install Apache2') {
+            steps {
+                sh 'sudo apt-get install apache2 -y > /home/ubuntu/install-log/install-log.txt'
             }
         }
     }
