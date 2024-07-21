@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Create a file') {
+        stage('install') {
             steps {
                 sh '''
                 mkdir output-log install-log
